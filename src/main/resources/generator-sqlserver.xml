@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<!-- 连接mysql驱动包所在位置 -->
+	<classPathEntry location="E:\Maven\com\microsoft\sqlserver\mssql-jdbc\6.4.0.jre8\mssql-jdbc-6.4.0.jre8.jar" />
+	<context id="db2tables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<!--是否去除自动生成的注释 true是,false否-->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<!-- 数据库连接信息，驱动类、连接地址、用户名、密码 -->
+		<jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+			connectionURL="jdbc:sqlserver://localhost:1433;DatabaseName=health" userId="123"
+			password="123">
+		</jdbcConnection>
+
+		<!--默认false,把JDBC DECIMAL和NUMBERIC类型解析为Integer-->
+		<!--为true时,把JDBC DECIMAL和NUMBERIC类型解析为java.math.BigDecimal-->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<!-- 生成POJO类 -->
+		<javaModelGenerator targetPackage="com.zhejian.wtbusiness.model"
+			targetProject="src/main/java/"> 
+			<!--是否让schema作为包的后缀-->
+			<property name="enableSubPackages" value="false" />
+			<!--去除前后空格-->
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<!-- 生成mapper映射文件XML -->
+		<sqlMapGenerator targetPackage="mybatis"
+						 targetProject="src/main/resources/">
+			<!--同上-->
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+		<!-- 生成mapper接口 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.zhejian.wtbusiness.interfaces.mapper" targetProject="src/main/java/">
+			<!--同上-->
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+		<!-- 指定数据库表 schema用户名,tableName表名-->
+		<table schema="" tableName=""></table>
+	</context>
+</generatorConfiguration>
